@@ -57,6 +57,46 @@
 #    Classes
 #################################################################
 
+###  http://www.pizza2.com/ontologies/pizza2.owl#AmericanaHotPizza2
+:AmericanaHotPizza2 rdf:type owl:Class ;
+                    rdfs:subClassOf :NamedPizza2 ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasTopping2 ;
+                                      owl:someValuesFrom :JalapenoPepper2Topping2
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasTopping2 ;
+                                      owl:someValuesFrom :Mozzarella2Topping2
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasTopping2 ;
+                                      owl:someValuesFrom :Pepperoni2Topping2
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasTopping2 ;
+                                      owl:someValuesFrom :TomatoTopping2
+                                    ] ;
+                    rdfs:comment "A pizza that only has Mozarella and Tomato toppings" .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#AmericanaPizza2
+:AmericanaPizza2 rdf:type owl:Class ;
+                 rdfs:subClassOf :NamedPizza2 ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasTopping2 ;
+                                   owl:someValuesFrom :Mozzarella2Topping2
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasTopping2 ;
+                                   owl:someValuesFrom :Pepperoni2Topping2
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasTopping2 ;
+                                   owl:someValuesFrom :TomatoTopping2
+                                 ] ;
+                 rdfs:comment "A pizza that only has Mozarella and Tomato toppings" .
+
+
 ###  http://www.pizza2.com/ontologies/pizza2.owl#Anchovy2Topping2
 :Anchovy2Topping2 rdf:type owl:Class ;
                   rdfs:subClassOf :Seafood2Topping2 .
@@ -93,6 +133,20 @@
                          rdfs:subClassOf :Pepper2Topping2 .
 
 
+###  http://www.pizza2.com/ontologies/pizza2.owl#MargheritaPizza2
+:MargheritaPizza2 rdf:type owl:Class ;
+                  rdfs:subClassOf :NamedPizza2 ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasTopping2 ;
+                                    owl:someValuesFrom :Mozzarella2Topping2
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasTopping2 ;
+                                    owl:someValuesFrom :TomatoTopping2
+                                  ] ;
+                  rdfs:comment "A pizza that only has Mozarella and Tomato toppings" .
+
+
 ###  http://www.pizza2.com/ontologies/pizza2.owl#Meat2Topping2
 :Meat2Topping2 rdf:type owl:Class ;
                rdfs:subClassOf :PizzaTopping2 .
@@ -107,6 +161,11 @@
 ###  http://www.pizza2.com/ontologies/pizza2.owl#Mushroom2Topping2
 :Mushroom2Topping2 rdf:type owl:Class ;
                    rdfs:subClassOf :Vegetable2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#NamedPizza2
+:NamedPizza2 rdf:type owl:Class ;
+             rdfs:subClassOf :Pizza2 .
 
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#Olive2Topping2
@@ -136,6 +195,10 @@
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#Pizza2
 :Pizza2 rdf:type owl:Class ;
+        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasBase2 ;
+                          owl:someValuesFrom :PizzaBase2
+                        ] ;
         owl:disjointWith :PizzaBase2 ,
                          :PizzaTopping2 .
 
@@ -154,6 +217,13 @@
                 rdfs:subClassOf :Seafood2Topping2 .
 
 
+###  http://www.pizza2.com/ontologies/pizza2.owl#ProbeInconsistentTopping2
+:ProbeInconsistentTopping2 rdf:type owl:Class ;
+                           rdfs:subClassOf :Cheese2Topping2 ,
+                                           :Vegetable2Topping2 ;
+                           rdfs:comment "This class should be inconsistent when the ontology is classifie" .
+
+
 ###  http://www.pizza2.com/ontologies/pizza2.owl#RedPepper2Topping2
 :RedPepper2Topping2 rdf:type owl:Class ;
                     rdfs:subClassOf :Pepper2Topping2 .
@@ -167,6 +237,28 @@
 ###  http://www.pizza2.com/ontologies/pizza2.owl#Seafood2Topping2
 :Seafood2Topping2 rdf:type owl:Class ;
                   rdfs:subClassOf :PizzaTopping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#SohoPizza2
+:SohoPizza2 rdf:type owl:Class ;
+            rdfs:subClassOf :NamedPizza2 ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTopping2 ;
+                              owl:someValuesFrom :Mozzarella2Topping2
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTopping2 ;
+                              owl:someValuesFrom :Olive2Topping2
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTopping2 ;
+                              owl:someValuesFrom :Parmezan2Topping2
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTopping2 ;
+                              owl:someValuesFrom :TomatoTopping2
+                            ] ;
+            rdfs:comment "A pizza that only has Mozarella and Tomato toppings" .
 
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#SpicyBeef2Topping2
@@ -197,6 +289,15 @@
 #################################################################
 #    General axioms
 #################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AmericanaHotPizza2
+                :AmericanaPizza2
+                :MargheritaPizza2
+                :SohoPizza2
+              )
+] .
+
 
 [ rdf:type owl:AllDisjointClasses ;
   owl:members ( :Anchovy2Topping2
