@@ -28,6 +28,12 @@
                 rdf:type owl:TransitiveProperty .
 
 
+###  http://www.pizza2.com/ontologies/pizza2.owl#hasSpiciness2
+:hasSpiciness2 rdf:type owl:ObjectProperty ,
+                        owl:FunctionalProperty ;
+               rdfs:range :SpicinessValuePartition2 .
+
+
 ###  http://www.pizza2.com/ontologies/pizza2.owl#hasTopping2
 :hasTopping2 rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf :hasIngredient2 ;
@@ -54,6 +60,14 @@
 
 
 #################################################################
+#    Data properties
+#################################################################
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#hasCalorificContentValue2
+:hasCalorificContentValue2 rdf:type owl:DatatypeProperty .
+
+
+#################################################################
 #    Classes
 #################################################################
 
@@ -75,6 +89,16 @@
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty :hasTopping2 ;
                                       owl:someValuesFrom :Tomato2Topping2
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasTopping2 ;
+                                      owl:allValuesFrom [ rdf:type owl:Class ;
+                                                          owl:unionOf ( :JalapenoPepper2Topping2
+                                                                        :Mozzarella2Topping2
+                                                                        :Pepperoni2Topping2
+                                                                        :Tomato2Topping2
+                                                                      )
+                                                        ]
                                     ] ;
                     rdfs:comment "A pizza that only has Mozarella and Tomato toppings" .
 
@@ -93,6 +117,15 @@
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty :hasTopping2 ;
                                    owl:someValuesFrom :Tomato2Topping2
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasTopping2 ;
+                                   owl:allValuesFrom [ rdf:type owl:Class ;
+                                                       owl:unionOf ( :Mozzarella2Topping2
+                                                                     :Pepperoni2Topping2
+                                                                     :Tomato2Topping2
+                                                                   )
+                                                     ]
                                  ] ;
                  rdfs:comment "A pizza that only has Mozarella and Tomato toppings" .
 
@@ -131,6 +164,16 @@
               owl:disjointWith :ThinAndCrispyBase2 .
 
 
+###  http://www.pizza2.com/ontologies/pizza2.owl#FourCheesePizza2
+:FourCheesePizza2 rdf:type owl:Class ;
+                  rdfs:subClassOf :Pizza2 ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasTopping2 ;
+                                    owl:qualifiedCardinality "4"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :Cheese2Topping2
+                                  ] .
+
+
 ###  http://www.pizza2.com/ontologies/pizza2.owl#GreenPepper2Topping2
 :GreenPepper2Topping2 rdf:type owl:Class ;
                       rdfs:subClassOf :Pepper2Topping2 .
@@ -141,9 +184,64 @@
               rdfs:subClassOf :Meat2Topping2 .
 
 
+###  http://www.pizza2.com/ontologies/pizza2.owl#HighCaloriePizza2
+:HighCaloriePizza2 rdf:type owl:Class ;
+                   owl:equivalentClass [ owl:intersectionOf ( :Pizza2
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasCalorificContentValue2 ;
+                                                                owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                     owl:onDatatype xsd:integer ;
+                                                                                     owl:withRestrictions ( [ xsd:minInclusive 400
+                                                                                                            ]
+                                                                                                          )
+                                                                                   ]
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
+                                       ] .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Hot2
+:Hot2 rdf:type owl:Class ;
+      rdfs:subClassOf :SpicinessValuePartition2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#InterestingPizza2
+:InterestingPizza2 rdf:type owl:Class ;
+                   owl:equivalentClass [ owl:intersectionOf ( :Pizza2
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasTopping2 ;
+                                                                owl:minCardinality "3"^^xsd:nonNegativeInteger
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
+                                       ] .
+
+
 ###  http://www.pizza2.com/ontologies/pizza2.owl#JalapenoPepper2Topping2
 :JalapenoPepper2Topping2 rdf:type owl:Class ;
-                         rdfs:subClassOf :Pepper2Topping2 .
+                         rdfs:subClassOf :Pepper2Topping2 ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty :hasSpiciness2 ;
+                                           owl:someValuesFrom :Hot2
+                                         ] .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#LowCaloriePizza2
+:LowCaloriePizza2 rdf:type owl:Class ;
+                  owl:equivalentClass [ owl:intersectionOf ( :Pizza2
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty :hasCalorificContentValue2 ;
+                                                               owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                    owl:onDatatype xsd:integer ;
+                                                                                    owl:withRestrictions ( [ xsd:maxExclusive 400
+                                                                                                           ]
+                                                                                                         )
+                                                                                  ]
+                                                             ]
+                                                           ) ;
+                                        rdf:type owl:Class
+                                      ] .
 
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#MargheritaPizza2
@@ -173,6 +271,16 @@
                rdfs:subClassOf :PizzaTopping2 .
 
 
+###  http://www.pizza2.com/ontologies/pizza2.owl#Medium2
+:Medium2 rdf:type owl:Class ;
+         rdfs:subClassOf :SpicinessValuePartition2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Mild2
+:Mild2 rdf:type owl:Class ;
+       rdfs:subClassOf :SpicinessValuePartition2 .
+
+
 ###  http://www.pizza2.com/ontologies/pizza2.owl#Mozzarella2Topping2
 :Mozzarella2Topping2 rdf:type owl:Class ;
                      rdfs:subClassOf :Cheese2Topping2 .
@@ -186,6 +294,18 @@
 ###  http://www.pizza2.com/ontologies/pizza2.owl#NamedPizza2
 :NamedPizza2 rdf:type owl:Class ;
              rdfs:subClassOf :Pizza2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#NonVegetarianPizza2
+:NonVegetarianPizza2 rdf:type owl:Class ;
+                     owl:equivalentClass [ owl:intersectionOf ( :Pizza2
+                                                                [ rdf:type owl:Class ;
+                                                                  owl:complementOf :VegetarianPizza2
+                                                                ]
+                                                              ) ;
+                                           rdf:type owl:Class
+                                         ] ;
+                     owl:disjointWith :VegetarianPizza2 .
 
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#Olive2Topping2
@@ -218,6 +338,10 @@
         rdfs:subClassOf [ rdf:type owl:Restriction ;
                           owl:onProperty :hasBase2 ;
                           owl:someValuesFrom :PizzaBase2
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasCalorificContentValue2 ;
+                          owl:someValuesFrom xsd:integer
                         ] ;
         owl:disjointWith :PizzaBase2 ,
                          :PizzaTopping2 .
@@ -229,7 +353,11 @@
 
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#PizzaTopping2
-:PizzaTopping2 rdf:type owl:Class .
+:PizzaTopping2 rdf:type owl:Class ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasSpiciness2 ;
+                                 owl:someValuesFrom :Hot2
+                               ] .
 
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#Prawn2Topping2
@@ -277,13 +405,53 @@
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :hasTopping2 ;
                               owl:someValuesFrom :Tomato2Topping2
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTopping2 ;
+                              owl:allValuesFrom [ rdf:type owl:Class ;
+                                                  owl:unionOf ( :Mozzarella2Topping2
+                                                                :Olive2Topping2
+                                                                :Parmezan2Topping2
+                                                                :Tomato2Topping2
+                                                              )
+                                                ]
                             ] ;
             rdfs:comment "A pizza that only has Mozarella and Tomato toppings" .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#SpicinessValuePartition2
+:SpicinessValuePartition2 rdf:type owl:Class ;
+                          owl:equivalentClass [ rdf:type owl:Class ;
+                                                owl:unionOf ( :Hot2
+                                                              :Medium2
+                                                              :Mild2
+                                                            )
+                                              ] ;
+                          rdfs:subClassOf :ValuePartition2 .
 
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#SpicyBeef2Topping2
 :SpicyBeef2Topping2 rdf:type owl:Class ;
                     rdfs:subClassOf :Meat2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#SpicyPizza2
+:SpicyPizza2 rdf:type owl:Class ;
+             owl:equivalentClass [ owl:intersectionOf ( :Pizza2
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :hasTopping2 ;
+                                                          owl:someValuesFrom [ owl:intersectionOf ( :PizzaTopping2
+                                                                                                    [ rdf:type owl:Restriction ;
+                                                                                                      owl:onProperty :hasSpiciness2 ;
+                                                                                                      owl:someValuesFrom :Hot2
+                                                                                                    ]
+                                                                                                  ) ;
+                                                                               rdf:type owl:Class
+                                                                             ]
+                                                        ]
+                                                      ) ;
+                                   rdf:type owl:Class
+                                 ] .
 
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#ThinAndCrispyBase2
@@ -299,6 +467,10 @@
 ###  http://www.pizza2.com/ontologies/pizza2.owl#Tuna2Topping2
 :Tuna2Topping2 rdf:type owl:Class ;
                rdfs:subClassOf :Seafood2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#ValuePartition2
+:ValuePartition2 rdf:type owl:Class .
 
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#Vegetable2Topping2
@@ -320,6 +492,40 @@
                                                            ) ;
                                         rdf:type owl:Class
                                       ] .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#BigPizza2
+:BigPizza2 rdf:type owl:NamedIndividual ,
+                    :AmericanaHotPizza2 ;
+           :hasCalorificContentValue2 500 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Example-Margherita2
+:Example-Margherita2 rdf:type owl:NamedIndividual ,
+                              :MargheritaPizza2 ;
+                     :hasCalorificContentValue2 263 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Example2ContentCalories2
+:Example2ContentCalories2 rdf:type owl:NamedIndividual ;
+                          :hasCalorificContentValue2 205 ,
+                                                     400 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#QuattroFormaggio2
+:QuattroFormaggio2 rdf:type owl:NamedIndividual ,
+                            :FourCheesePizza2 ;
+                   :hasCalorificContentValue2 723 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#SpecialExample2
+:SpecialExample2 rdf:type owl:NamedIndividual ,
+                          :InterestingPizza2 ;
+                 :hasCalorificContentValue2 300 .
 
 
 #################################################################
@@ -375,6 +581,14 @@
                 :Pepperoni2Topping2
                 :Salami2Topping2
                 :SpicyBeef2Topping2
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Hot2
+                :Medium2
+                :Mild2
               )
 ] .
 
