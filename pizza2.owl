@@ -74,7 +74,7 @@
                                     ] ,
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty :hasTopping2 ;
-                                      owl:someValuesFrom :TomatoTopping2
+                                      owl:someValuesFrom :Tomato2Topping2
                                     ] ;
                     rdfs:comment "A pizza that only has Mozarella and Tomato toppings" .
 
@@ -92,7 +92,7 @@
                                  ] ,
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty :hasTopping2 ;
-                                   owl:someValuesFrom :TomatoTopping2
+                                   owl:someValuesFrom :Tomato2Topping2
                                  ] ;
                  rdfs:comment "A pizza that only has Mozarella and Tomato toppings" .
 
@@ -102,14 +102,27 @@
                   rdfs:subClassOf :Seafood2Topping2 .
 
 
-###  http://www.pizza2.com/ontologies/pizza2.owl#Cape2Topping2
-:Cape2Topping2 rdf:type owl:Class ;
-               rdfs:subClassOf :Vegetable2Topping2 .
+###  http://www.pizza2.com/ontologies/pizza2.owl#Caper2Topping2
+:Caper2Topping2 rdf:type owl:Class ;
+                rdfs:subClassOf :Vegetable2Topping2 .
 
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#Cheese2Topping2
 :Cheese2Topping2 rdf:type owl:Class ;
-                 rdfs:subClassOf :PizzaTopping2 .
+                 rdfs:subClassOf :PizzaTopping2 ;
+                 owl:disjointWith :Vegetable2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#CheesyPizza2
+:CheesyPizza2 rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( :Pizza2
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :hasTopping2 ;
+                                                           owl:someValuesFrom :Cheese2Topping2
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] .
 
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#DeepPanBase2
@@ -142,7 +155,15 @@
                                   ] ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :hasTopping2 ;
-                                    owl:someValuesFrom :TomatoTopping2
+                                    owl:someValuesFrom :Tomato2Topping2
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasTopping2 ;
+                                    owl:allValuesFrom [ rdf:type owl:Class ;
+                                                        owl:unionOf ( :Mozzarella2Topping2
+                                                                      :Tomato2Topping2
+                                                                    )
+                                                      ]
                                   ] ;
                   rdfs:comment "A pizza that only has Mozarella and Tomato toppings" .
 
@@ -154,8 +175,7 @@
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#Mozzarella2Topping2
 :Mozzarella2Topping2 rdf:type owl:Class ;
-                     rdfs:subClassOf :Cheese2Topping2 ;
-                     owl:disjointWith :Parmezan2Topping2 .
+                     rdfs:subClassOf :Cheese2Topping2 .
 
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#Mushroom2Topping2
@@ -256,7 +276,7 @@
                             ] ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :hasTopping2 ;
-                              owl:someValuesFrom :TomatoTopping2
+                              owl:someValuesFrom :Tomato2Topping2
                             ] ;
             rdfs:comment "A pizza that only has Mozarella and Tomato toppings" .
 
@@ -271,9 +291,9 @@
                     rdfs:subClassOf :PizzaBase2 .
 
 
-###  http://www.pizza2.com/ontologies/pizza2.owl#TomatoTopping2
-:TomatoTopping2 rdf:type owl:Class ;
-                rdfs:subClassOf :Vegetable2Topping2 .
+###  http://www.pizza2.com/ontologies/pizza2.owl#Tomato2Topping2
+:Tomato2Topping2 rdf:type owl:Class ;
+                 rdfs:subClassOf :Vegetable2Topping2 .
 
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#Tuna2Topping2
@@ -284,6 +304,22 @@
 ###  http://www.pizza2.com/ontologies/pizza2.owl#Vegetable2Topping2
 :Vegetable2Topping2 rdf:type owl:Class ;
                     rdfs:subClassOf :PizzaTopping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#VegetarianPizza2
+:VegetarianPizza2 rdf:type owl:Class ;
+                  owl:equivalentClass [ owl:intersectionOf ( :Pizza2
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty :hasTopping2 ;
+                                                               owl:allValuesFrom [ rdf:type owl:Class ;
+                                                                                   owl:unionOf ( :Cheese2Topping2
+                                                                                                 :Vegetable2Topping2
+                                                                                               )
+                                                                                 ]
+                                                             ]
+                                                           ) ;
+                                        rdf:type owl:Class
+                                      ] .
 
 
 #################################################################
@@ -308,12 +344,12 @@
 
 
 [ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :Cape2Topping2
+  owl:members ( :Caper2Topping2
                 :Mushroom2Topping2
                 :Olive2Topping2
                 :Onion2Topping2
                 :Pepper2Topping2
-                :TomatoTopping2
+                :Tomato2Topping2
               )
 ] .
 
@@ -322,7 +358,6 @@
   owl:members ( :Cheese2Topping2
                 :Meat2Topping2
                 :Seafood2Topping2
-                :Vegetable2Topping2
               )
 ] .
 
