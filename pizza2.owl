@@ -6,6 +6,241 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @base <http://www.pizza2.com/ontologies/pizza2.owl> .
 
-<http://www.pizza2.com/ontologies/pizza2.owl> rdf:type owl:Ontology .
+<http://www.pizza2.com/ontologies/pizza2.owl> rdf:type owl:Ontology ;
+                                               rdfs:comment "\"A pizza2 ontology that describes various pizzas based on their toppings\"" .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#hasBase2
+:hasBase2 rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :hasIngredient2 ;
+          owl:inverseOf :isBaseOf2 ;
+          rdf:type owl:FunctionalProperty ;
+          rdfs:domain :Pizza2 ;
+          rdfs:range :PizzaBase2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#hasIngredient2
+:hasIngredient2 rdf:type owl:ObjectProperty ;
+                owl:inverseOf :isIngredientOf2 ;
+                rdf:type owl:TransitiveProperty .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#hasTopping2
+:hasTopping2 rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasIngredient2 ;
+             owl:inverseOf :isToppingOf2 ;
+             rdfs:domain :Pizza2 ;
+             rdfs:range :PizzaTopping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#isBaseOf2
+:isBaseOf2 rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :isIngredientOf2 ;
+           rdfs:domain :PizzaBase2 ;
+           rdfs:range :Pizza2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#isIngredientOf2
+:isIngredientOf2 rdf:type owl:ObjectProperty ,
+                          owl:TransitiveProperty .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#isToppingOf2
+:isToppingOf2 rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :isIngredientOf2 .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Anchovy2Topping2
+:Anchovy2Topping2 rdf:type owl:Class ;
+                  rdfs:subClassOf :Seafood2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Cape2Topping2
+:Cape2Topping2 rdf:type owl:Class ;
+               rdfs:subClassOf :Vegetable2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Cheese2Topping2
+:Cheese2Topping2 rdf:type owl:Class ;
+                 rdfs:subClassOf :PizzaTopping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#DeepPanBase2
+:DeepPanBase2 rdf:type owl:Class ;
+              rdfs:subClassOf :PizzaBase2 ;
+              owl:disjointWith :ThinAndCrispyBase2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#GreenPepper2Topping2
+:GreenPepper2Topping2 rdf:type owl:Class ;
+                      rdfs:subClassOf :Pepper2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Ham2Topping2
+:Ham2Topping2 rdf:type owl:Class ;
+              rdfs:subClassOf :Meat2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#JalapenoPepper2Topping2
+:JalapenoPepper2Topping2 rdf:type owl:Class ;
+                         rdfs:subClassOf :Pepper2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Meat2Topping2
+:Meat2Topping2 rdf:type owl:Class ;
+               rdfs:subClassOf :PizzaTopping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Mozzarella2Topping2
+:Mozzarella2Topping2 rdf:type owl:Class ;
+                     rdfs:subClassOf :Cheese2Topping2 ;
+                     owl:disjointWith :Parmezan2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Mushroom2Topping2
+:Mushroom2Topping2 rdf:type owl:Class ;
+                   rdfs:subClassOf :Vegetable2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Olive2Topping2
+:Olive2Topping2 rdf:type owl:Class ;
+                rdfs:subClassOf :Vegetable2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Onion2Topping2
+:Onion2Topping2 rdf:type owl:Class ;
+                rdfs:subClassOf :Vegetable2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Parmezan2Topping2
+:Parmezan2Topping2 rdf:type owl:Class ;
+                   rdfs:subClassOf :Cheese2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Pepper2Topping2
+:Pepper2Topping2 rdf:type owl:Class ;
+                 rdfs:subClassOf :Vegetable2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Pepperoni2Topping2
+:Pepperoni2Topping2 rdf:type owl:Class ;
+                    rdfs:subClassOf :Meat2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Pizza2
+:Pizza2 rdf:type owl:Class ;
+        owl:disjointWith :PizzaBase2 ,
+                         :PizzaTopping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#PizzaBase2
+:PizzaBase2 rdf:type owl:Class ;
+            owl:disjointWith :PizzaTopping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#PizzaTopping2
+:PizzaTopping2 rdf:type owl:Class .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Prawn2Topping2
+:Prawn2Topping2 rdf:type owl:Class ;
+                rdfs:subClassOf :Seafood2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#RedPepper2Topping2
+:RedPepper2Topping2 rdf:type owl:Class ;
+                    rdfs:subClassOf :Pepper2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Salami2Topping2
+:Salami2Topping2 rdf:type owl:Class ;
+                 rdfs:subClassOf :Meat2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Seafood2Topping2
+:Seafood2Topping2 rdf:type owl:Class ;
+                  rdfs:subClassOf :PizzaTopping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#SpicyBeef2Topping2
+:SpicyBeef2Topping2 rdf:type owl:Class ;
+                    rdfs:subClassOf :Meat2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#ThinAndCrispyBase2
+:ThinAndCrispyBase2 rdf:type owl:Class ;
+                    rdfs:subClassOf :PizzaBase2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#TomatoTopping2
+:TomatoTopping2 rdf:type owl:Class ;
+                rdfs:subClassOf :Vegetable2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Tuna2Topping2
+:Tuna2Topping2 rdf:type owl:Class ;
+               rdfs:subClassOf :Seafood2Topping2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Vegetable2Topping2
+:Vegetable2Topping2 rdf:type owl:Class ;
+                    rdfs:subClassOf :PizzaTopping2 .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Anchovy2Topping2
+                :Prawn2Topping2
+                :Tuna2Topping2
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Cape2Topping2
+                :Mushroom2Topping2
+                :Olive2Topping2
+                :Onion2Topping2
+                :Pepper2Topping2
+                :TomatoTopping2
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Cheese2Topping2
+                :Meat2Topping2
+                :Seafood2Topping2
+                :Vegetable2Topping2
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :GreenPepper2Topping2
+                :JalapenoPepper2Topping2
+                :RedPepper2Topping2
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Ham2Topping2
+                :Pepperoni2Topping2
+                :Salami2Topping2
+                :SpicyBeef2Topping2
+              )
+] .
+
 
 ###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi
