@@ -22,6 +22,10 @@
           rdfs:range :PizzaBase2 .
 
 
+###  http://www.pizza2.com/ontologies/pizza2.owl#hasCountryOfOrigin2
+:hasCountryOfOrigin2 rdf:type owl:ObjectProperty .
+
+
 ###  http://www.pizza2.com/ontologies/pizza2.owl#hasIngredient2
 :hasIngredient2 rdf:type owl:ObjectProperty ;
                 owl:inverseOf :isIngredientOf2 ;
@@ -158,6 +162,10 @@
                                   ] .
 
 
+###  http://www.pizza2.com/ontologies/pizza2.owl#Country2
+:Country2 rdf:type owl:Class .
+
+
 ###  http://www.pizza2.com/ontologies/pizza2.owl#DeepPanBase2
 :DeepPanBase2 rdf:type owl:Class ;
               rdfs:subClassOf :PizzaBase2 ;
@@ -283,7 +291,11 @@
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#Mozzarella2Topping2
 :Mozzarella2Topping2 rdf:type owl:Class ;
-                     rdfs:subClassOf :Cheese2Topping2 .
+                     rdfs:subClassOf :Cheese2Topping2 ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasCountryOfOrigin2 ;
+                                       owl:hasValue :Italy2
+                                     ] .
 
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#Mushroom2Topping2
@@ -469,6 +481,15 @@
                rdfs:subClassOf :Seafood2Topping2 .
 
 
+###  http://www.pizza2.com/ontologies/pizza2.owl#UnclosedPizza2
+:UnclosedPizza2 rdf:type owl:Class ;
+                rdfs:subClassOf :NamedPizza2 ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasTopping2 ;
+                                  owl:someValuesFrom :Mozzarella2Topping2
+                                ] .
+
+
 ###  http://www.pizza2.com/ontologies/pizza2.owl#ValuePartition2
 :ValuePartition2 rdf:type owl:Class .
 
@@ -498,10 +519,20 @@
 #    Individuals
 #################################################################
 
+###  http://www.pizza2.com/ontologies/pizza2.owl#America2
+:America2 rdf:type owl:NamedIndividual ,
+                   :Country2 .
+
+
 ###  http://www.pizza2.com/ontologies/pizza2.owl#BigPizza2
 :BigPizza2 rdf:type owl:NamedIndividual ,
                     :AmericanaHotPizza2 ;
            :hasCalorificContentValue2 500 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#England2
+:England2 rdf:type owl:NamedIndividual ,
+                   :Country2 .
 
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#Example-Margherita2
@@ -514,6 +545,21 @@
 :Example2ContentCalories2 rdf:type owl:NamedIndividual ;
                           :hasCalorificContentValue2 205 ,
                                                      400 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#France2
+:France2 rdf:type owl:NamedIndividual ,
+                  :Country2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Germany2
+:Germany2 rdf:type owl:NamedIndividual ,
+                   :Country2 .
+
+
+###  http://www.pizza2.com/ontologies/pizza2.owl#Italy2
+:Italy2 rdf:type owl:NamedIndividual ,
+                 :Country2 .
 
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#QuattroFormaggio2
