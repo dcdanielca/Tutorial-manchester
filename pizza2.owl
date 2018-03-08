@@ -60,7 +60,8 @@
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#isToppingOf2
 :isToppingOf2 rdf:type owl:ObjectProperty ;
-              rdfs:subPropertyOf :isIngredientOf2 .
+              rdfs:subPropertyOf :isIngredientOf2 ;
+              rdfs:domain :PizzaTopping2 .
 
 
 #################################################################
@@ -163,7 +164,15 @@
 
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#Country2
-:Country2 rdf:type owl:Class .
+:Country2 rdf:type owl:Class ;
+          owl:equivalentClass [ rdf:type owl:Class ;
+                                owl:oneOf ( :America2
+                                            :England2
+                                            :France2
+                                            :Germany2
+                                            :Italy2
+                                          )
+                              ] .
 
 
 ###  http://www.pizza2.com/ontologies/pizza2.owl#DeepPanBase2
